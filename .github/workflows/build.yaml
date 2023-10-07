@@ -9,6 +9,7 @@ env:
   DOCKERHUB_USERNAME: lyzhang1999
   REGION_ID: 'ap-southeast-3'
   REGISTRY: swr.ap-southeast-3.myhuaweicloud.com
+  SWR_ORGANIZATION: 'public-base'
 
 jobs:
   docker:
