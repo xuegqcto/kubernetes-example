@@ -7,9 +7,9 @@ on:
 
 env:
   DOCKERHUB_USERNAME: xuegqcto
-  REGION_ID: 'ap-southeast-3'
-  REGISTRY: swr.ap-southeast-3.myhuaweicloud.com
-  SWR_ORGANIZATION: 'public-base'
+  #REGION_ID: 'ap-southeast-3'
+  #REGISTRY: swr.ap-southeast-3.myhuaweicloud.com
+  #SWR_ORGANIZATION: 'public-base'
 
 jobs:
   docker:
