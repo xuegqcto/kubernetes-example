@@ -6,7 +6,7 @@ on:
       - "main"
 
 env:
-  DOCKERHUB_USERNAME: xuegqcto
+  DOCKERHUB_USERNAME: lyzhang1999
   REGION_ID: 'ap-southeast-3'
   REGISTRY: swr.ap-southeast-3.myhuaweicloud.com
   SWR_ORGANIZATION: 'public-base'
@@ -27,27 +27,27 @@ jobs:
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ env.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-          #registry: swr.ap-southeast-3.myhuaweicloud.com 
-          #username: ${{ secrets.HUAWEI_SGP_REGISTRY_USERNAME }}
-          #password: ${{ secrets.HUAWEI_SGP_REGISTRY_PASSWORD }}
+          #username: ${{ env.DOCKERHUB_USERNAME }}
+          #password: ${{ secrets.DOCKERHUB_TOKEN }}
+          registry: swr.ap-southeast-3.myhuaweicloud.com 
+          username: ${{ secrets.HUAWEI_SGP_REGISTRY_USERNAME }}
+          password: ${{ secrets.HUAWEI_SGP_REGISTRY_PASSWORD }}
       - name: Build backend and push
         uses: docker/build-push-action@v3
         with:
           context: backend
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: ${{ env.DOCKERHUB_USERNAME }}/:${{ steps.vars.outputs.sha_short }}
-          #tags: ${{ env.REGISTRY }}/${{ env.SWR_ORGANIZATION }}/backend:${{ steps.vars.outputs.sha_short }}
+          #tags: ${{ env.DOCKERHUB_USERNAME }}/:${{ steps.vars.outputs.sha_short }}
+          tags: ${{ env.REGISTRY }}/${{ env.SWR_ORGANIZATION }}/backend:${{ steps.vars.outputs.sha_short }}
       - name: Build frontend and push
         uses: docker/build-push-action@v3
         with:
           context: frontend
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: ${{ env.DOCKERHUB_USERNAME }}/frontend:${{ steps.vars.outputs.sha_short }}
-          #tags: ${{ env.REGISTRY }}/${{ env.SWR_ORGANIZATION }}/frontend:${{ steps.vars.outputs.sha_short }}
+          #tags: ${{ env.DOCKERHUB_USERNAME }}/frontend:${{ steps.vars.outputs.sha_short }}
+          tags: ${{ env.REGISTRY }}/${{ env.SWR_ORGANIZATION }}/frontend:${{ steps.vars.outputs.sha_short }}
       # - name: Update helm values.yaml
       #   uses: fjogeleit/yaml-update-action@main
       #   with:
